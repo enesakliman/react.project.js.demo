@@ -1,13 +1,5 @@
-
-
 function TransactionList() {
-    return (
-      <>
-          
-      </>
-    )
-  
-    
-  }
-  
-  export default TransactionList;
+  return <></>;
+}
+
+export default TransactionList;
