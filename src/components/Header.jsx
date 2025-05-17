@@ -4,7 +4,7 @@ import Logo from "../assets/logo.png";
 
 export default function Header() {
   return (
-    <nav className="fixed grid grid-cols-6 justify-items-center items-center p-4">
+    <nav className="grid grid-cols-6 justify-items-center items-center p-4">
       <NavLink to="/" className="col-span-2 flex justify-center">
         <img
           src={Logo}
@@ -29,6 +29,22 @@ export default function Header() {
           }
         >
           About
+        </NavLink>
+        <NavLink
+          to="/transactions"
+          className={({ isActive }) =>
+            isActive ? "my-text-color" : "my-text-color-2 hover:my-text-color"
+          }
+        >
+          Transactions
+        </NavLink>
+        <NavLink
+          to="/reports"
+          className={({ isActive }) =>
+            isActive ? "my-text-color" : "my-text-color-2 hover:my-text-color"
+          }
+        >
+          Reports
         </NavLink>
       </div>
     </nav>
