@@ -46,9 +46,7 @@ export function GlobalStateProvider({ children }) {
     addTransaction,
     deleteTransaction,
   };
-  return (
-    <GlobalState.Provider value={{ data }}>{children}</GlobalState.Provider>
-  );
+  return <GlobalState.Provider value={data}>{children}</GlobalState.Provider>;
 }
 
 GlobalStateProvider.propTypes = {
