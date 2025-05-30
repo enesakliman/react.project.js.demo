@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 // Başlangıç state’i: LocalStorage’dan yükle, yoksa boş liste
 const initialState = {
-  transactions: JSON.parse(localStorage.getItem("transactions")) || []
+  transactions: JSON.parse(localStorage.getItem("transactions")) || [],
 };
 
 // Reducer fonksiyonu: işlem ekleme ve silme
@@ -12,12 +12,14 @@ function AppReducer(state, action) {
     case "ADD_TRANSACTION":
       return {
         ...state,
-        transactions: [action.payload, ...state.transactions]
+        transactions: [action.payload, ...state.transactions],
       };
     case "DELETE_TRANSACTION":
       return {
         ...state,
-        transactions: state.transactions.filter(tx => tx.id !== action.payload)
+        transactions: state.transactions.filter(
+          (tx) => tx.id !== action.payload
+        ),
       };
     default:
       return state;
@@ -29,7 +31,12 @@ const GlobalContext = createContext(initialState);
 
 // Provider bileşeni
 export function GlobalStateProvider({ children }) {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [state, dispatch] = useReducer(AppReducer, initialState, () => {
+    const localData = localStorage.getItem("transactions");
+    return {
+      transactions: localData ? JSON.parse(localData) : [],
+    };
+  });
 
   // transactions her değiştiğinde localStorage’a kaydet
   useEffect(() => {
@@ -37,22 +44,27 @@ export function GlobalStateProvider({ children }) {
   }, [state.transactions]);
 
   // Action yaratıcıları
-  const addTransaction = transaction => dispatch({ type: "ADD_TRANSACTION", payload: transaction });
-  const deleteTransaction = id => dispatch({ type: "DELETE_TRANSACTION", payload: id });
+  const addTransaction = (transaction) =>
+    dispatch({ type: "ADD_TRANSACTION", payload: transaction });
+  const deleteTransaction = (id) =>
+    dispatch({ type: "DELETE_TRANSACTION", payload: id });
 
+  const data = {
+    transactions: state.transactions,
+    addTransaction,
+    deleteTransaction,
+  };
+
+  useEffect(() => {
+    localStorage.getItem("transactions", JSON.stringify(state.transactions)); 
+  }, [state.transactions]);
   return (
-    <GlobalContext.Provider value={{
-      transactions: state.transactions,
-      addTransaction,
-      deleteTransaction
-    }}>
-      {children}
-    </GlobalContext.Provider>
+    <GlobalContext.Provider value={data}>{children}</GlobalContext.Provider>
   );
 }
 
 GlobalStateProvider.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 };
 
 // Hook ile context’e erişim kolaylığı
