@@ -1,33 +1,34 @@
-import React, { useState } from 'react';
-import { useGlobalState } from '../context/GlobalState';
+import React, { useState } from "react";
+import { useGlobalState } from "../context/GlobalState";
 
 export default function AddTransaction() {
   const { addTransaction } = useGlobalState();
-  const [description, setDescription] = useState('');
-  const [income, setIncome] = useState('');
-  const [expense, setExpense] = useState('');
+  const [description, setDescription] = useState("");
+  const [income, setIncome] = useState("");
+  const [expense, setExpense] = useState("");
+  const [date, setDate] = useState(() =>
+    new Date().toISOString().substr(0, 10)
+  );
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     // Girdi veya çıktıyı uygun işaretle hesapla
-    const amount = income
-      ? +income
-      : expense
-      ? -expense
-      : 0;
+    const amount = income ? +income : expense ? -expense : 0;
     if (!description || amount === 0) return;
 
     const newTx = {
       id: Date.now(),
       text: description,
-      amount,
+      amount: amount,
+      date: date,
     };
     addTransaction(newTx);
 
     // Formu temizle
-    setDescription('');
-    setIncome('');
-    setExpense('');
+    setDescription("");
+    setIncome("");
+    setExpense("");
+    setDate(new Date().toISOString().substr(0,10));
   };
 
   return (
@@ -43,8 +44,20 @@ export default function AddTransaction() {
             id="description"
             type="text"
             value={description}
-            onChange={e => setDescription(e.target.value)}
+            onChange={(e) => setDescription(e.target.value)}
             placeholder="Açıklama girin..."
+            className="w-full p-2 border rounded focus:outline-none focus:ring"
+          />
+        </div>
+        <div className="flex-1">
+          <label htmlFor="date" className="block mb-1 font-medium">
+            Tarih
+          </label>
+          <input
+            id="date"
+            type="date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
             className="w-full p-2 border rounded focus:outline-none focus:ring"
           />
         </div>
@@ -60,9 +73,9 @@ export default function AddTransaction() {
               id="income"
               type="number"
               value={income}
-              onChange={e => {
+              onChange={(e) => {
                 setIncome(e.target.value);
-                setExpense('');
+                setExpense("");
               }}
               placeholder="Gelir..."
               className="w-full p-2 border rounded focus:outline-none focus:ring"
@@ -78,9 +91,9 @@ export default function AddTransaction() {
               id="expense"
               type="number"
               value={expense}
-              onChange={e => {
+              onChange={(e) => {
                 setExpense(e.target.value);
-                setIncome('');
+                setIncome("");
               }}
               placeholder="Gider..."
               className="w-full p-2 border rounded focus:outline-none focus:ring"
