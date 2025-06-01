@@ -21,7 +21,7 @@ export default function Header() {
 
         {/* Hamburger butonu: yalnızca mobilde göster */}
         <button
-          onClick={() => setMenuOpen(prev => !prev)}
+          onClick={() => setMenuOpen((prev) => !prev)}
           className="md:hidden text-gray-700 focus:outline-none"
         >
           <svg
@@ -96,14 +96,6 @@ export default function Header() {
         </div>
       </div>
 
-      {/* 
-        2) Mobil menü: 
-           - container’a göre absolute, top-full yapıyoruz ki header’ın hemen altında, overlay gibi açılsın
-           - w-full: tam genişlik 
-           - bg-white: arka plan rengi
-           - shadow-lg-soft: gölge (daha belirgin istersen shadow-lg)
-           - rounded-b-xl: sadece alt köşeleri yuvarlak
-      */}
       {menuOpen && (
         <div className="md:hidden absolute top-full left-0 w-full bg-white shadow-lg-soft rounded-b-xl">
           <div className="flex flex-col space-y-2 px-4 py-4">
