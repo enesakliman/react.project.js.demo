@@ -7,17 +7,16 @@ import AddTransaction from "../components/AddTransaction";
 
 export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
-
   return (
     <div className="min-h-screen flex flex-col">
       <main className="container mx-auto flex-1 px-4 py-8 space-y-8">
-        <div className="bg-white shadow-lg-soft rounded-xl  p-6 flex items-center justify-between">
+        <div className="bg-white shadow-md rounded-xl  p-6 flex items-center justify-between">
           <Balance />
           <button
             onClick={() => setModalOpen(true)}
-            className="bg-white text-primary font-semibold py-2 px-4 rounded-lg-soft shadow hover:bg-gray-100 transition"
+            className="bg-white text-primary font-semibold py-2 px-4 rounded-md shadow hover:bg-gray-100 transition"
           >
-            Yeni İşlem Ekle
+            Add New Transaction
           </button>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

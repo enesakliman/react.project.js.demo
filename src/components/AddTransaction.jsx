@@ -3,13 +3,14 @@ import { useGlobalState } from "../context/GlobalState";
 
 export default function AddTransaction() {
   const { addTransaction } = useGlobalState();
+  // State variables for transaction details
   const [description, setDescription] = useState("");
   const [income, setIncome] = useState("");
   const [expense, setExpense] = useState("");
   const [date, setDate] = useState(() =>
     new Date().toISOString().substr(0, 10)
   );
-
+  // Function to handle form submission
   const onSubmit = (e) => {
     e.preventDefault();
     const amount = income ? +income : expense ? -expense : 0;
@@ -31,7 +32,7 @@ export default function AddTransaction() {
 
   return (
     <div className="space-y-6 border-solid border-gray-200 p-6 rounded-lg shadow-lg bg-white">
-      <h3 className="text-2xl font-semibold mb-2">Yeni İşlem Ekle</h3>
+      <h3 className="text-2xl font-semibold mb-2">Add New Transaction</h3>
       <form onSubmit={onSubmit} className="space-y-4">
         <div>
           <label htmlFor="description" className="block mb-1 font-medium">
@@ -42,14 +43,13 @@ export default function AddTransaction() {
             type="text"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-            placeholder="Açıklama girin..."
+            placeholder="Description..."
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
           />
         </div>
-
         <div>
           <label htmlFor="date" className="block mb-1 font-medium">
-            Tarih
+            Date
           </label>
           <input
             id="date"
@@ -59,11 +59,10 @@ export default function AddTransaction() {
             className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
           />
         </div>
-
         <div className="flex flex-col md:flex-row md:space-x-4">
           <div className="flex-1">
             <label htmlFor="income" className="block mb-1 font-medium">
-              Girdi (Gelir)
+              Income
             </label>
             <input
               id="income"
@@ -73,13 +72,13 @@ export default function AddTransaction() {
                 setIncome(e.target.value);
                 setExpense("");
               }}
-              placeholder="Gelir..."
+              placeholder="Income..."
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
             />
           </div>
           <div className="flex-1 mt-4 md:mt-0">
             <label htmlFor="expense" className="block mb-1 font-medium">
-              Çıktı (Gider)
+              Expense
             </label>
             <input
               id="expense"
@@ -89,7 +88,7 @@ export default function AddTransaction() {
                 setExpense(e.target.value);
                 setIncome("");
               }}
-              placeholder="Gider..."
+              placeholder="Expense..."
               className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
             />
           </div>
@@ -112,7 +111,7 @@ export default function AddTransaction() {
             cursor-pointer
           "
         >
-          İşlemi Ekle
+          Add Transaction
         </button>
       </form>
     </div>

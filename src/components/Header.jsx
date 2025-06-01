@@ -12,12 +12,13 @@ export default function Header() {
           className="w-auto h-20 cursor-pointer"
         />
       </NavLink>
-
       <div className="col-span-4 flex justify-around items-center text-2xl gap-4 font-bold">
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "text-accent-dark" : "text-accent-light hover:text-accent"
+            isActive
+              ? "text-accent-dark"
+              : "text-accent-light hover:text-accent"
           }
         >
           Dashboard

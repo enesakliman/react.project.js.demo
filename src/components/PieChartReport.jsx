@@ -8,9 +8,9 @@ import {
   Tooltip,
   Legend,
 } from "recharts";
-
 export default function PieChartReport() {
   const { transactions } = useGlobalState();
+  // Calculate income and expense totals
   const income = transactions
     .filter((tx) => tx.amount > 0)
     .reduce((sum, tx) => sum + tx.amount, 0);
@@ -18,12 +18,12 @@ export default function PieChartReport() {
     .filter((tx) => tx.amount < 0)
     .reduce((sum, tx) => sum + Math.abs(tx.amount), 0);
 
+  // Prepare data for the pie chart
   const data = [
     { name: "Income", value: income },
     { name: "Expense", value: expense },
   ];
-  const COLORS = ['#00C6FF', '#8400FF'];
-
+  const COLORS = ["#00C6FF", "#8400FF"];
   return (
     <div className="bg-white shadow-md rounded-lg p-4">
       <h3 className="text-xl font-semibold mb-4">Overview</h3>

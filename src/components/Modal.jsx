@@ -20,7 +20,6 @@ export default function Modal({ isOpen, onClose, children }) {
     </div>
   );
 }
-
 Modal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
