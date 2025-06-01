@@ -30,7 +30,7 @@ export default function AddTransaction() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 border-solid border-gray-200 p-6 rounded-lg shadow-lg bg-white">
       <h3 className="text-2xl font-semibold mb-2">Yeni İşlem Ekle</h3>
       <form onSubmit={onSubmit} className="space-y-4">
         <div>

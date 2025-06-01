@@ -9,10 +9,9 @@ export default function Dashboard() {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
-      {/* Main */}
+    <div className="min-h-screen flex flex-col">
       <main className="container mx-auto flex-1 px-4 py-8 space-y-8">
-        <div className="bg-white rounded-xl shadow-lg-soft p-6 flex items-center justify-between">
+        <div className="bg-white shadow-lg-soft rounded-xl  p-6 flex items-center justify-between">
           <Balance />
           <button
             onClick={() => setModalOpen(true)}
