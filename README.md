@@ -23,7 +23,7 @@ A simple budget management web application built with React, React Router, Tailw
 1. **Clone the repository**
    ```bash
    git clone https://github.com/enesakliman/react.project.js.demo.git
-   cd my-budget-app
+   cd react.project.js.demo
    ```
 2. **Install dependencies**
     ```bash
