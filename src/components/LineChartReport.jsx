@@ -31,7 +31,7 @@ export default function LineChartReport() {
       income: item.income,
       expense: item.expense
     }));
-
+    const COLORS = ['#00C6FF', '#8400FF'];
   return (
     <div className="bg-white shadow-md rounded-lg p-4">
       <h3 className="text-xl font-semibold mb-4">History</h3>
@@ -46,8 +46,8 @@ export default function LineChartReport() {
           <YAxis />
           <Tooltip labelFormatter={l => new Date(l).toLocaleDateString('tr-TR')} />
           <Legend verticalAlign="bottom" height={32} />
-          <Line type="monotone" dataKey="income" name="Income" stroke="#4ade80" dot={false} />
-          <Line type="monotone" dataKey="expense" name="Expense" stroke="#f87171" dot={false} />
+          <Line type="monotone" dataKey="income" name="Income" stroke="#00C6FF" dot={false} />
+          <Line type="monotone" dataKey="expense" name="Expense" stroke="#8400FF" dot={false} />
         </LineChart>
       </ResponsiveContainer>
     </div>

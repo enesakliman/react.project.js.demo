@@ -47,7 +47,7 @@ export default function Reports() {
       expense: item.expense
     }));
 
-  const COLORS = ['#4ade80', '#f87171'];
+    const COLORS = ['#00C6FF', '#8400FF'];
 
   return (
     <div className="container mx-auto p-4">
@@ -93,14 +93,14 @@ export default function Reports() {
               type="monotone" 
               dataKey="income" 
               name="Income" 
-              stroke="#4ade80" 
+              stroke="#00C6FF" 
               dot={false}
             />
             <Line 
               type="monotone" 
               dataKey="expense" 
               name="Expense" 
-              stroke="#f87171" 
+              stroke="#8400FF" 
               dot={false}
             />
           </LineChart>

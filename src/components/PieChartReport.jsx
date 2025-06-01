@@ -22,7 +22,7 @@ export default function PieChartReport() {
     { name: "Income", value: income },
     { name: "Expense", value: expense },
   ];
-  const COLORS = ["#4ade80", "#f87171"];
+  const COLORS = ['#00C6FF', '#8400FF'];
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4">

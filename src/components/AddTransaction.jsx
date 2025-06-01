@@ -12,33 +12,30 @@ export default function AddTransaction() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // Girdi veya çıktıyı uygun işaretle hesapla
     const amount = income ? +income : expense ? -expense : 0;
     if (!description || amount === 0) return;
 
     const newTx = {
       id: Date.now(),
       text: description,
-      amount: amount,
-      date: date,
+      amount,
+      date,
     };
     addTransaction(newTx);
 
-    // Formu temizle
     setDescription("");
     setIncome("");
     setExpense("");
-    setDate(new Date().toISOString().substr(0,10));
+    setDate(new Date().toISOString().substr(0, 10));
   };
 
   return (
-    <div className="add-transaction bg-white shadow-md rounded-lg p-4 mb-6">
-      <h3 className="text-xl mb-2">Add New Transaction</h3>
+    <div className="space-y-6">
+      <h3 className="text-2xl font-semibold mb-2">Yeni İşlem Ekle</h3>
       <form onSubmit={onSubmit} className="space-y-4">
-        {/* Açıklama Input */}
         <div>
           <label htmlFor="description" className="block mb-1 font-medium">
-            Açıklama
+            Description
           </label>
           <input
             id="description"
@@ -46,10 +43,11 @@ export default function AddTransaction() {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             placeholder="Açıklama girin..."
-            className="w-full p-2 border rounded focus:outline-none focus:ring"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
           />
         </div>
-        <div className="flex-1">
+
+        <div>
           <label htmlFor="date" className="block mb-1 font-medium">
             Tarih
           </label>
@@ -58,16 +56,14 @@ export default function AddTransaction() {
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="w-full p-2 border rounded focus:outline-none focus:ring"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
           />
         </div>
 
-        {/* Girdi ve Çıktı Inputları Yan Yana */}
-        <div className="flex space-x-4">
-          {/* Girdi */}
+        <div className="flex flex-col md:flex-row md:space-x-4">
           <div className="flex-1">
             <label htmlFor="income" className="block mb-1 font-medium">
-              Girdi
+              Girdi (Gelir)
             </label>
             <input
               id="income"
@@ -78,14 +74,12 @@ export default function AddTransaction() {
                 setExpense("");
               }}
               placeholder="Gelir..."
-              className="w-full p-2 border rounded focus:outline-none focus:ring"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
             />
           </div>
-
-          {/* Çıktı */}
-          <div className="flex-1">
+          <div className="flex-1 mt-4 md:mt-0">
             <label htmlFor="expense" className="block mb-1 font-medium">
-              Çıktı
+              Çıktı (Gider)
             </label>
             <input
               id="expense"
@@ -96,17 +90,29 @@ export default function AddTransaction() {
                 setIncome("");
               }}
               placeholder="Gider..."
-              className="w-full p-2 border rounded focus:outline-none focus:ring"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring focus:border-primary"
             />
           </div>
         </div>
-
-        {/* Ekle Butonu */}
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
+          className="
+            w-full
+            bg-gradient-to-r from-primary to-accent
+            text-gray-500
+            hover:text-gray-900
+            font-semibold
+            py-3
+            px-4
+            rounded-lg
+            shadow-lg-soft
+            hover:from-primary-dark hover:to-accent-dark
+            focus:ring-2 focus:ring-offset-2 focus:ring-primary-dark
+            transition
+            cursor-pointer
+          "
         >
-          Add Transaction
+          İşlemi Ekle
         </button>
       </form>
     </div>

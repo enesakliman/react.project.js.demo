@@ -30,7 +30,7 @@ export default function TransactionItem({ transaction }) {
         </span>
         <button
           onClick={() => deleteTransaction(transaction.id)}
-          className="text-red-600 hover:text-red-800"
+          className="text-red-600 hover:text-red-800 cursor-pointer"
         >
           x
         </button>

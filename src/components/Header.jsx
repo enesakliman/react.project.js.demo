@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Logo from "../assets/logo.png";
+import Logo from "../assets/budget.png";
 
 export default function Header() {
   return (
@@ -9,7 +9,7 @@ export default function Header() {
         <img
           src={Logo}
           alt="MyBudget Logo"
-          className="w-2/5 h-24 cursor-pointer"
+          className="w-auto h-20 cursor-pointer"
         />
       </NavLink>
 
@@ -17,7 +17,7 @@ export default function Header() {
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? "my-text-color" : "my-text-color-2 hover:my-text-color"
+            isActive ? "text-accent-dark" : "text-accent-light hover:text-accent"
           }
         >
           Dashboard
