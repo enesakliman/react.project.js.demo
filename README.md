@@ -37,7 +37,7 @@ A simple budget management web application built with React, React Router, Tailw
     # or
     yarn dev
     ```
-4. **Open http://localhost:3000 in your browser to view the app.**
+4. **Open http://localhost:5173 in your browser to view the app.**
 
 ## Technologies
 
